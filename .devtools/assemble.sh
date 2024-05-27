@@ -112,7 +112,7 @@ php -r "
 \$composer = json_decode(file_get_contents('build/composer.json'), true);
 array_splice(\$composer['autoload']['classmap'], 1);
 echo json_encode(\$composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-" > build/composer.json.tmp && mv build/composer.json.tmp build/composer.json
+" >build/composer.json.tmp && mv build/composer.json.tmp build/composer.json
 composer --working-dir="build" config --unset scripts.customize
 composer --working-dir="build" config --unset scripts.post-create-project-cmd
 

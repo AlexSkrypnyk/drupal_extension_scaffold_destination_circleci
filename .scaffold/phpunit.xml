@@ -25,6 +25,8 @@
             <directory>src</directory>
         </include>
         <exclude>
+            <file>src/CustomizeCommand.php</file>
+            <file>src/Str2Name.php</file>
             <directory>tests/phpunit</directory>
         </exclude>
     </source>

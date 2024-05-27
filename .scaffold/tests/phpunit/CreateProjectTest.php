@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AlexSkrypnyk\drupal_extension_scaffold\Scaffold\Tests;
 
-use AlexSkrypnyk\Customizer\CustomizeCommand;
 use AlexSkrypnyk\Customizer\Tests\Dirs;
 use AlexSkrypnyk\Customizer\Tests\Functional\CustomizerTestCase;
+use AlexSkrypnyk\drupal_extension_scaffold\Scaffold\CustomizeCommand;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Symfony\Component\Finder\Finder;
 
@@ -49,7 +49,10 @@ class CreateProjectTest extends CustomizerTestCase {
     // Update the 'autoload' to include the command file from the project
     // root to get code test coverage.
     $json = $this->composerJsonRead($this->dirs->repo . '/composer.json');
-    $json['autoload']['classmap'] = [$this->dirs->root . DIRECTORY_SEPARATOR . $this->customizerFile];
+    $json['autoload']['classmap'] = [
+      $this->dirs->root . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $this->customizerFile,
+      $this->dirs->root . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Str2Name.php',
+    ];
     $this->composerJsonWrite($this->dirs->repo . '/composer.json', $json);
 
     // Save the package name for later use in tests.
@@ -69,7 +72,16 @@ class CreateProjectTest extends CustomizerTestCase {
       'Ahot',
       self::TUI_ANSWER_NOTHING,
     ]);
-    $this->composerCreateProject(['--no-install' => TRUE]);
+    $this->composerCreateProject([
+      '--no-install' => TRUE,
+      '--repository' => [
+        json_encode([
+          'type' => 'path',
+          'url' => $this->dirs->repo,
+          'options' => ['symlink' => TRUE],
+        ]),
+      ],
+    ]);
 
     $this->assertComposerCommandSuccessOutputContains('Welcome to the Drupal Extension Scaffold project customizer');
     $this->assertComposerCommandSuccessOutputContains('Project was customized');
