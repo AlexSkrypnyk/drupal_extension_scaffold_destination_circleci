@@ -6,11 +6,11 @@
         "php": ">=8.2"
     },
     "require-dev": {
+        "alexskrypnyk/customizer": "^0.2.0",
         "composer/composer": "^2.7",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "drupal/coder": "^8.3",
         "ergebnis/composer-normalize": "^2.42",
-        "helmich/phpunit-json-assert": "^2.0",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpmd/phpmd": "^2.15",
         "phpstan/phpstan": "^1.10",
@@ -22,16 +22,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Scaffold\\": "src"
+            "AlexSkrypnyk\\drupal_extension_scaffold\\Scaffold\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Scaffold\\Tests\\": "tests/phpunit"
+            "AlexSkrypnyk\\Customizer\\Tests\\": "vendor/alexskrypnyk/customizer/tests/phpunit",
+            "AlexSkrypnyk\\drupal_extension_scaffold\\Scaffold\\Tests\\": "tests/phpunit"
         }
     },
     "config": {
         "allow-plugins": {
+            "alexskrypnyk/customizer": false,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true
         }
