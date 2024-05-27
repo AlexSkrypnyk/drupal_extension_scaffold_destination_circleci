@@ -18,6 +18,9 @@ class CustomizerConfig {
     ];
   }
 
+  /**
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   */
   public static function questions(CustomizeCommand $c): array {
     return [
       'Name' => [

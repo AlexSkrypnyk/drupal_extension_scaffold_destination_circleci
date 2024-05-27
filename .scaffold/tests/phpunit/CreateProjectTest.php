@@ -73,12 +73,11 @@ class CreateProjectTest extends CustomizerTestCase {
 
     $this->assertComposerCommandSuccessOutputContains('Welcome to the Drupal Extension Scaffold project customizer');
     $this->assertComposerCommandSuccessOutputContains('Project was customized');
-    ;
 
     $this->assertFilesCommon();
   }
 
-  protected function assertFilesCommon() {
+  protected function assertFilesCommon(): void {
     $this->assertDirectoryExists('.devtools');
     $this->assertFileDoesNotExist('.github/FUNDING.yml');
     $this->assertFileDoesNotExist('.github/workflows/scaffold-release.yml');
