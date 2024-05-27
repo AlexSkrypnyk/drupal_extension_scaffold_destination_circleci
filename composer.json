@@ -26,9 +26,9 @@
         "drupal/config_ignore": "Ignore certain configuration during import."
     },
     "autoload": {
-        "psr-4": {
-            "Scaffold\\": ".scaffold/src"
-        }
+        "classmap": [
+            ".scaffold/src/CustomizeCommand.php"
+        ]
     },
     "scripts": {
         "customize": [
